@@ -3,7 +3,6 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm
 
-
 def register_view(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -38,3 +37,20 @@ def logout_view(request):
 @login_required
 def dashboard(request):
     return render(request, 'ourapp/dashboard.html')
+
+@login_required
+def profile_view(request):
+    return render(request, 'ourapp/profile.html')
+
+@login_required
+def resume_ranker_view(request):
+    return render(request, 'ourapp/ranker.html')
+
+@login_required
+def internship_program_view(request):
+    return render(request, 'ourapp/internship_program.html')
+
+@login_required
+def about_view(request):
+    return render(request, 'ourapp/about.html')
+

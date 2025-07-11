@@ -4,93 +4,102 @@
   <meta charset="UTF-8">
   <title>{% block title %}Smart Resume Ranker{% endblock %}</title>
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f4f4;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    header, footer {
-      background-color: #004080;
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      background-color: #F6FAFD;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 230px;
+      background-color: #0A1931;
       color: white;
-      padding: 15px;
+      padding: 30px 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 22px;
+      color: #B3CFE5;
+      margin-bottom: 40px;
       text-align: center;
     }
 
-    nav a {
-      color: white;
+    .sidebar a {
+      display: block;
+      color: #B3CFE5;
       text-decoration: none;
-      margin: 0 12px;
+      margin: 12px 0;
       font-weight: bold;
+      padding: 10px 14px;
+      border-radius: 6px;
+      transition: background 0.3s, color 0.3s;
     }
 
-    .container {
-      max-width: 600px;
-      margin: 30px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    .sidebar a:hover {
+      background-color: #1A3D63;
+      color: #fff;
     }
 
-    h2 {
+    .main-content {
+      flex: 1;
+      padding: 30px 40px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .page-title {
+      font-size: 24px;
+      color: #0A1931;
       margin-bottom: 20px;
-      color: #004080;
     }
 
-    form input[type="text"],
-    form input[type="password"],
-    form input[type="email"],
-    form textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    button {
-      background-color: #004080;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #003060;
+    .content-wrapper {
+      flex: 1;
     }
 
     footer {
-      margin-top: 50px;
+      background-color: #004080;
+      color: white;
+      text-align: center;
+      padding: 15px;
       font-size: 14px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Smart Resume Ranker</h1>
-    <nav>
-      {% if request.user.is_authenticated %}
-        <a href="{% url 'dashboard' %}">Dashboard</a>
-        <a href="{% url 'logout' %}">Logout</a>
-      {% else %}
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'register' %}">Register</a>
-      {% endif %}
-    </nav>
-  </header>
-
-  <div class="container">
-    {% block content %}
-    {% endblock %}
+  <div class="sidebar">
+    <h2>Resume Ranker</h2>
+    <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
+    <a href="{% url 'profile' %}">👤 Profile</a>
+    <a href="{% url 'ranker' %}">📄 Resume Ranker</a>
+    <a href="{% url 'internship_program' %}">🎓 Internship Program</a>
+    <a href="{% url 'about' %}">ℹ️ About</a>
+    <a href="{% url 'logout' %}">🚪 Sign Out</a>
   </div>
 
-  <footer>
-    &copy; 2025 Smart Resume Ranker — All Rights Reserved
-  </footer>
+  <div class="main-content">
+    <!-- <div class="page-title">{% block page_title %}Dashboard{% endblock %}</div> -->
+
+    <div class="content-wrapper">
+      {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+      &copy; 2025 Smart Resume Ranker — All Rights Reserved
+    </footer>
+  </div>
 
 </body>
 </html>
+
+
+<!-- we have just navbar and footer here for now, add things which are common for all pages -->
